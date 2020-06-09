@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule  } from '@angular/common/http';
 
-import { GoogleMapsModule } from '@angular/google-maps';
 import { fakeBackendProvider } from './shared/mock/fake-backend';
 
 @NgModule({
@@ -16,7 +15,7 @@ import { fakeBackendProvider } from './shared/mock/fake-backend';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleMapsModule
+    
   ],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent]

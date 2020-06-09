@@ -1,0 +1,17 @@
+<google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+    <map-marker
+    #markerElem
+    *ngFor="let home of homes"
+    [position]="{'lat': +home.lat, 'lng': +home.lng}"
+    [label]="asdas"
+    [title]="asdas"
+    (mapClick)="openInfo(markerElem, home)"
+    >
+    </map-marker>
+    <map-info-window>
+        <div *ngIf="currentHome" class="map-info-home">
+            <h2>Holaaa</h2>
+            <p>Intento</p>
+        </div>
+    </map-info-window>
+</google-map>
