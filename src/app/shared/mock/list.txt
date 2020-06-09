@@ -1,0 +1,46 @@
+user-select: text;
+
+Cra. 69f #4-65 a 4-5
+4.626776, -74.130639
+Nueva Marsella
+
+Cra. 69 Bis #4-2 a 4-66
+Nueva Marsella
+4.626583, -74.128665
+
+Cra. 71 #5a-22 a 5a-84
+Nueva Marsella
+4.628540, -74.132967
+
+Cl. 67 #4a-99 a 4a-1
+Nueva Granada
+4.650046, -74.056505
+
+Cl. 65 #5-99 a 5-1
+Nueva Granada
+4.648870, -74.058554
+
+
+Cra. 21 #39a-2 a 39a-98
+La Soledad
+4.629318, -74.074120
+
+Cl. 39 #28a-87 a 28a-1
+La Soledad
+4.627270, -74.078462
+
+Cl. 40 #19-2 a 19-86
+La Soledad
+4.630031, -74.072815
+
+Cra. 19b #85-99 a 85-1
+Antiguo Country
+4.672171, -74.058310
+
+Cl. 90 #17-28
+Antiguo Country
+4.675235, -74.054716
+
+Cra. 16a #76-31
+Antiguo Country
+4.663919, -74.059971
