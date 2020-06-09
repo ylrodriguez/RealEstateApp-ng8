@@ -30,6 +30,7 @@ export class HomesComponent implements OnInit {
       (err) => {
         console.log("Error ngOnInit@HomeComponent: ");
         console.log(err);
+        this.sharedHomesService.loadDefaultCurrentCity();
       }
     )
     

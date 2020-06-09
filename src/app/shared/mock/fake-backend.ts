@@ -33,7 +33,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // Route functions
 
         function getHomes() {
-            return ok(homes_json)
+            let cityId = params.get('cityId');
+            let homes = homes_json['homes'].filter( res => res['city']['id'] == cityId)
+            return ok(homes)
         }
 
         function getCity() {

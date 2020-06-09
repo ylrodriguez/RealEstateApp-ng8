@@ -14,7 +14,7 @@ export class SharedHomesService {
     name: "Bogotá",
     country: "Colombia"
   }
-  private _currentCity = new BehaviorSubject<City>(this.mockCity);
+  private _currentCity = new BehaviorSubject<City>({});
 
   constructor(private cityService: CityService) {}
 
@@ -32,5 +32,9 @@ export class SharedHomesService {
         console.log(err);
       }
     )
+  }
+
+  loadDefaultCurrentCity(){
+    this.updateCurrentCity(this.mockCity)
   }
 }
