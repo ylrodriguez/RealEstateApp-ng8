@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { default as data_json } from './homes.json';
+import { default as homes_json } from './homes.json';
+import { default as city_json } from './city.json';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -21,16 +22,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/homes') && method === 'GET':
                     return getHomes();
-                // case url.endsWith('/city/all') && method === 'GET':
-                //     return getCities();
-                // case url.endsWith('/city/remove') && method === 'POST':
-                //     return authenticate();
-                // case url.endsWith('/users/register') && method === 'POST':
-                //     return register();
-                // case url.endsWith('/users') && method === 'GET':
-                //     return getUsers();
-                // case url.match(/\/users\/\d+$/) && method === 'DELETE':
-                //     return deleteUser();
+                case url.endsWith('/city') && method === 'GET':
+                    return getCity();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -40,7 +33,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // Route functions
 
         function getHomes() {
-            return ok(data_json)
+            return ok(homes_json)
+        }
+
+        function getCity() {
+            let osm_id = params.get('osm_id');
+            let city = city_json['city'].find( res => res['osm_id'] == osm_id)
+            return ok(city)
         }
 
         // Helper functions
