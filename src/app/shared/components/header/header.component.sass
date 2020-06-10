@@ -1,0 +1,21 @@
+@import "src/assets/custom-variables"
+@import "src/assets/custom-functions"
+
+.header
+    border-bottom: 1px solid rgb(216, 216, 216)
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    #burguer-menu
+        position: absolute
+        left: 0
+        font-size: 1.5rem
+        padding: 0.5rem
+        @include md-screen
+            display: none
+    .logo
+        display: inline-block
+        svg
+            width: 160px
+            height: 35px

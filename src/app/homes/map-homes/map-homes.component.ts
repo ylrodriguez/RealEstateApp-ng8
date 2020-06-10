@@ -33,24 +33,26 @@ export class MapHomesComponent implements OnInit {
     this.sharedHomeService.currentCity.subscribe(
       newCity => {
         this.city = newCity;
-        this.homeService.getHomesInCity(this.city).subscribe(
-          (res) => {
-            this.homes = res;
-            if (this.homes.length) {
-              this.center = { lat: +this.homes[0].lat, lng: +this.homes[0].lng };
+        if(Object.keys(this.city).length){
+          this.homeService.getHomesInCity(this.city).subscribe(
+            (res) => {
+              this.homes = res;
+              if (this.homes.length) {
+                this.center = { lat: +this.homes[0].lat, lng: +this.homes[0].lng };
+              }
+              this.makePolygon();
+            },
+            (err) => {
+              console.log(err);
             }
-            this.makePolygon();
-          },
-          (err) => {
-            console.log(err);
-          }
-        )
+          )
+        }
       }
     )
 
   }
 
-  makePolygon(){
+  makePolygon() {
     this.polygonCity = new google.maps.Polygon({
       paths: this.city.coordinates,
       strokeColor: '#5E90D9',

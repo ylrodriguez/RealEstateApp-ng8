@@ -6,6 +6,7 @@ import { HomesComponent } from './homes.component';
 import { MapHomesComponent } from './map-homes/map-homes.component';
 import { CardHomesComponent } from './card-homes/card-homes.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
   imports: [
     CommonModule,
     HomesRoutingModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+
+    SharedModule
   ]
 })
 export class HomesModule { }

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule  } from '@angular/common/http';
 
 import { fakeBackendProvider } from './shared/mock/fake-backend';
+import { HomesModule } from './homes/homes.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,10 @@ import { fakeBackendProvider } from './shared/mock/fake-backend';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
+    /** Custom modules */
+    HomesModule,
+    SharedModule
     
   ],
   providers: [fakeBackendProvider],
