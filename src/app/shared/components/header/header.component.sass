@@ -7,6 +7,10 @@
     align-items: center
     justify-content: center
     position: relative
+    padding: 0.5rem 0
+    @include md-screen
+        padding: 1rem 0
+
     #burguer-menu
         position: absolute
         left: 0
@@ -15,7 +19,15 @@
         @include md-screen
             display: none
     .logo
+        position: relative
         display: inline-block
+        &::after 
+            content: ""
+            position: absolute
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
         svg
             width: 160px
             height: 35px
