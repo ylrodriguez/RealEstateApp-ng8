@@ -1,0 +1,47 @@
+@import "src/assets/custom-variables"
+@import "src/assets/custom-functions"
+
+.homes-search-container
+    display: flex
+    flex-flow: row nowrap
+
+    .search-map-container
+        position: relative
+        flex: 1 1 100%
+        display: -webkit-box
+        display: flex
+        flex-direction: column
+
+    .search-list-container
+        flex: auto
+        width: 100%
+        overflow-y: auto
+        box-shadow: -2px 2px 5px 0 rgba(0,0,0,.4)
+        z-index: 1
+        @include lg-screen
+            width: 390px
+            flex: 0 0 390px
+        @include xl-screen
+            width: 750px
+            flex: 0 0 750px
+
+        .search-list-header
+            padding: 12px 10px
+            @include lg-screen
+                padding: 20px
+
+            .search-title
+                font-size: 20px
+                line-height: 26px
+                margin-top: 0
+                margin-bottom: 8px
+                font-weight: 600
+
+            .search-extra-info
+                display: flex
+                flex-flow: row wrap
+
+.focus
+    display: none !important
+    @include lg-screen
+        display: initial !important
