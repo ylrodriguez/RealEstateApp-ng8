@@ -1,10 +1,15 @@
 <app-header></app-header>
 <div class="homes-main-content" *ngIf="city.name">
+    <!-- Only mobile controls -->
     <div class="mobile-toggle-view">
         <button (click) = "changeMapViewStatus(true)">Map</button>
         <button (click) = "changeMapViewStatus(false)">List</button>
     </div>
-    <section class="search-homes"></section>
+    <!-- Search main controls -->
+    <section class="search-homes">
+        <button>Example</button>
+    </section>
+    <!-- Map and list container -->
     <div class="homes-search-container" *ngIf="canLoadMap">
         <div class="search-map-container" [ngClass] = "{'focus' : !isMapVisible}">
             <app-map-homes [city]="city" [homes]="homes"></app-map-homes>

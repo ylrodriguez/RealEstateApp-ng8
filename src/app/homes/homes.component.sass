@@ -1,9 +1,26 @@
 @import "src/assets/custom-variables"
 @import "src/assets/custom-functions"
 
+.homes-main-content
+    height: calc(100% - 80px)
+    overflow: hidden
+    position: relative
+    display: flex
+    flex-flow: column
+
+.search-homes
+    display: flex
+    align-items: center
+    border-bottom: 1px solid #ccc
+    min-height: 55px
+
 .homes-search-container
     display: flex
     flex-flow: row nowrap
+    overflow: hidden
+    min-width: 320px
+    position: relative
+    flex: 1 1 auto
 
     .search-map-container
         position: relative

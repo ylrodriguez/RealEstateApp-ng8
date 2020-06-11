@@ -1,13 +1,24 @@
 @import "src/assets/custom-variables"
 @import "src/assets/custom-functions"
 
+*,
 html
     font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif
+    box-sizing: border-box
+
+html, body
+    height: 100%
+
+*, *:before, *:after 
+    box-sizing: inherit
+
 
 body
     margin: 0
     line-height: 1.5
     color: #2A2A33
+    @include lg-screen
+        overflow: hidden
 
 /* Estilos del mapa en homes*/
 #map-homes 
@@ -23,4 +34,3 @@ body
 .icon
     &.primary
         filter: colorFilter(primary)
-    
