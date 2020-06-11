@@ -14,7 +14,7 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
   public center = { lat: 4.612638888, lng: -74.0705 };
   public options: google.maps.MapOptions
   public markerOptions: google.maps.MarkerOptions = {
-    icon: "/assets/icon/default-marker.png"
+    icon: "/assets/icon/marker.svg"
   }
 
   public polygonCity: google.maps.Polygon;
@@ -37,7 +37,9 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.options = {
-      minZoom: 9,
+      minZoom: 10,
+      fullscreenControl: false,
+      clickableIcons: false,
       restriction: {
         latLngBounds: this.BOGOTA_BOUNDS,
         strictBounds: false,
@@ -52,6 +54,7 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
     this.makePolygon();
   }
 
+  // Draws city boundaries with a Polygon and set to the map
   makePolygon() {
     this.polygonCity = new google.maps.Polygon({
       paths: this.city.coordinates,
@@ -59,14 +62,20 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
       strokeOpacity: 0.8,
       strokeWeight: 4,
       fillColor: '#5E90D9',
-      fillOpacity: 0
+      fillOpacity: 0,
+      clickable: false
     })
     this.polygonCity.setMap(this.map._googleMap);
+    //this.polygonCity.addListener('click', () => this.closeInfoWindow())
   }
 
-  openInfo(marker: MapMarker, home) {
+  openInfo(marker: MapMarker, home: Home) {
     this.currentHome = home;
     this.infoWindow.open(marker)
+  }
+
+  closeInfoWindow(){
+    this.infoWindow.close()
   }
 
 }

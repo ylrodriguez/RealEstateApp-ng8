@@ -1,18 +1,34 @@
-<google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
-    <map-marker
-    #markerElem
-    *ngFor="let home of homes"
-    [position]="{'lat': +home.lat, 'lng': +home.lng}"
-    [label]="asdas"
-    [title]="asdas"
-    (mapClick)="openInfo(markerElem, home)"
-    [options] = "markerOptions"
+<div id="map-homes">
+    <google-map height="500px" width="100%" 
+    [zoom]="zoom" 
+    [center]="center" 
+    [options]="options"
+    (mapClick) = "closeInfoWindow()"
     >
-    </map-marker>
-    <map-info-window>
-        <div *ngIf="currentHome" class="map-info-home">
-            <h2>{{currentHome.address}}</h2>
-            <p>Intento</p>
-        </div>
-    </map-info-window>
-</google-map>
+
+        <map-marker
+        #markerElem
+        *ngFor="let home of homes"
+        [position]="{'lat': +home.lat, 'lng': +home.lng}"
+        [title]="home.address"
+        (mapClick)="openInfo(markerElem, home)"
+        [options] = "markerOptions"
+        >
+        </map-marker>
+
+        <map-info-window>
+            <div *ngIf="currentHome" class="map-info-home">
+                <div class="info-image-wrapper">
+                    <img [src]="currentHome.images[0]" alt="">
+                </div>
+                <div class="info-home">
+                    <p class="info-price">$ {{currentHome.price | number}}</p>
+                    <p class="info-neighborhood">Barrio: {{currentHome.neighborhood}}</p>
+                    <span class="info-area">&Aacute;rea: {{currentHome.area}} m2</span>
+                    <span class="info-bedrooms">Habitaciones: {{currentHome.bedrooms}}</span>
+                </div>
+            </div>
+        </map-info-window>
+
+    </google-map>
+</div>

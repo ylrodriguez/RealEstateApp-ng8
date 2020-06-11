@@ -16,5 +16,6 @@ export interface Home {
     bathrooms?: number,
     price?: number,
     area?: number,
-    desc?: string
+    desc?: string,
+    images?: any[]
 }
