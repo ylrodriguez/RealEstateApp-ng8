@@ -12,26 +12,37 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
 
   public zoom = 10
   public center = { lat: 4.612638888, lng: -74.0705 };
-  public options: google.maps.MapOptions = {
-    minZoom: 9,
-  }
+  public options: google.maps.MapOptions
   public markerOptions: google.maps.MarkerOptions = {
     icon: "/assets/icon/default-marker.png"
   }
 
-  public currentHome: Home;
   public polygonCity: google.maps.Polygon;
+  public restriction: google.maps.MapRestriction;
+  private BOGOTA_BOUNDS = {
+    north: 4.909847,
+    south: 4.376707,
+    west: -74.575839,
+    east: -73.515189,
+  }
+
 
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @Input() homes: Home[];
   @Input() city: City;
+  public currentHome: Home;
 
   constructor() { }
 
   ngOnInit() {
-    
-
+    this.options = {
+      minZoom: 9,
+      restriction: {
+        latLngBounds: this.BOGOTA_BOUNDS,
+        strictBounds: false,
+      }
+    }
   }
 
   ngAfterViewInit() {
