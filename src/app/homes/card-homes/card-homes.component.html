@@ -1,1 +1,26 @@
-<p>card-homes works!</p>
+<div class="card-home-wrapper">
+    <div class="card-header">
+        <img [src]="home.images[0]" alt="" class="card-home-img">
+        <div class="header-info">
+            <p class="home-status">Casa en {{home.homeStatus == 'sale' ? 'venta' : 'arriendo'}}</p>
+            <p class="home-price">$ {{home.price | number}}</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <span>
+            <strong>{{home.bedrooms}}</strong> habitaciones
+        </span>
+        <span>
+            <strong>{{home.bathrooms}}</strong> ba&ntilde;os
+        </span>
+        <span>
+            <strong>{{home.area}}</strong> m2
+        </span>
+        <p class="home-address">
+            {{home.address}}
+        </p>
+        <p class="home-neighborhood">
+            {{home.neighborhood}}
+        </p>
+    </div>
+</div>

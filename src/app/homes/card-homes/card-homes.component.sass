@@ -1,0 +1,54 @@
+@import "src/assets/custom-variables"
+@import "src/assets/custom-functions"
+
+.card-home-wrapper
+    position: relative
+    box-shadow: 0 1px 2px rgba(0,0,0,.2)
+    border-bottom: 4px solid #006AFF
+
+    .card-header
+        padding-bottom: 50%
+        height: 0
+        overflow: hidden
+        position: relative
+        color: #fff
+    
+        @include md-screen
+            padding-bottom: 41%
+        
+        img.card-home-img
+            height: 100%
+            width: 100%
+            object-fit: cover
+            display: block
+            position: absolute
+        
+        .header-info
+            position: absolute
+            bottom: 0
+            padding: 5px 10px
+            background-color: rgba(13, 13, 13, 0.4)
+            width: 100%
+
+            .home-status
+                font-size: 0.75rem
+            
+            .home-price
+                font-weight: 600
+                font-size: 1.25rem
+
+            p
+                margin: 0
+    
+    .card-body
+        padding: 3px 10px
+        font-size: 0.8rem
+
+        & > span
+            display: inline-block
+            margin: 3px 3px
+
+        & > p
+            margin: 0
+
+

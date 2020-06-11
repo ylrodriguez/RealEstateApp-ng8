@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Home } from 'src/app/shared/models/home.model';
 
 @Component({
   selector: 'app-card-homes',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardHomesComponent implements OnInit {
 
+  @Input() home: Home;
+  
   constructor() { }
 
   ngOnInit() {

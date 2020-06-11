@@ -2,8 +2,8 @@
 <div class="homes-main-content" *ngIf="city.name">
     <!-- Only mobile controls -->
     <div class="mobile-toggle-view">
-        <button (click) = "changeMapViewStatus(true)">Map</button>
-        <button (click) = "changeMapViewStatus(false)">List</button>
+        <button (click)="changeMapViewStatus(true)">Map</button>
+        <button (click)="changeMapViewStatus(false)">List</button>
     </div>
     <!-- Search main controls -->
     <section class="search-homes">
@@ -11,16 +11,23 @@
     </section>
     <!-- Map and list container -->
     <div class="homes-search-container" *ngIf="canLoadMap">
-        <div class="search-map-container" [ngClass] = "{'focus' : !isMapVisible}">
+        <!-- Map container -->
+        <div class="search-map-container" [ngClass]="{'focus' : !isMapVisible}">
             <app-map-homes [city]="city" [homes]="homes"></app-map-homes>
         </div>
-        <div class="search-list-container" [ngClass] = "{'focus' : isMapVisible}">
+        <!-- List container -->
+        <div class="search-list-container" [ngClass]="{'focus' : isMapVisible}">
             <div class="search-list-header">
                 <h1 class="search-title">Propiedades en: {{city.name}}, {{city.country}}</h1>
                 <div class="search-extra-info">
                     <span>{{homes.length}} resultados</span>
                 </div>
             </div>
+            <ul class="list-homes-wrapper" *ngIf="canLoadMap">
+                <li class="list-home-item" *ngFor="let home of homes">
+                    <app-card-homes [home]="home"></app-card-homes>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
