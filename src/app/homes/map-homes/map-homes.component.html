@@ -17,7 +17,7 @@
         </map-marker>
 
         <map-info-window>
-            <div *ngIf="currentHome" class="map-info-home">
+            <div *ngIf="currentHome" class="map-info-home" (click)="emitHomeDetailsModal()">
                 <div class="info-image-wrapper">
                     <img [src]="currentHome.images[0]" alt="">
                 </div>

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="homes-main-content" *ngIf="city.name">
+<div class="homes-main-content">
     <!-- Only mobile controls -->
     <div class="mobile-toggle-view">
         <button (click)="changeMapViewStatus(true)">Map</button>
@@ -13,7 +13,7 @@
     <div class="homes-search-container" *ngIf="canLoadMap">
         <!-- Map container -->
         <div class="search-map-container" [ngClass]="{'focus' : !isMapVisible}">
-            <app-map-homes [city]="city" [homes]="homes"></app-map-homes>
+            <app-map-homes [city]="city" [homes]="homes" (openHomeDetailsModal)="openHomeDetailsModal()"></app-map-homes>
         </div>
         <!-- List container -->
         <div class="search-list-container" [ngClass]="{'focus' : isMapVisible}">
@@ -25,9 +25,11 @@
             </div>
             <ul class="list-homes-wrapper" *ngIf="canLoadMap">
                 <li class="list-home-item" *ngFor="let home of homes">
-                    <app-card-homes [home]="home"></app-card-homes>
+                    <app-card-homes [home]="home" (openHomeDetailsModal)="openHomeDetailsModal()"></app-card-homes>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+
+<app-details-home #modalHomeDetails (closeHomeDetailsModal) = "closeHomeDetailsModal()"></app-details-home>

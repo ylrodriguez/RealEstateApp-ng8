@@ -1,5 +1,5 @@
 <div class="card-home-wrapper">
-    <div class="card-header">
+    <div class="card-header" (click)="emitHomeDetailsModal()">
         <img [src]="home.images[0]" alt="" class="card-home-img">
         <div class="header-info">
             <p class="home-status">Casa en {{home.homeStatus == 'sale' ? 'venta' : 'arriendo'}}</p>
@@ -7,20 +7,20 @@
         </div>
     </div>
     <div class="card-body">
-        <span>
+        <span (click)="emitHomeDetailsModal()">
             <strong>{{home.bedrooms}}</strong> habitaciones
         </span>
-        <span>
+        <span (click)="emitHomeDetailsModal()">
             <strong>{{home.bathrooms}}</strong> ba&ntilde;os
         </span>
-        <span>
+        <span (click)="emitHomeDetailsModal()">
             <strong>{{home.area}}</strong> m2
         </span>
         <p class="home-address">
-            {{home.address}}
+            <span (click)="emitHomeDetailsModal()">{{home.address}}</span>
         </p>
         <p class="home-neighborhood">
-            {{home.neighborhood}}
+            <span (click)="emitHomeDetailsModal()">{{home.neighborhood}}</span>
         </p>
     </div>
 </div>

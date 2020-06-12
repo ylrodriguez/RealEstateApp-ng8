@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Input, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, AfterViewInit, Output } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 import { Home } from 'src/app/shared/models/home.model';
 import { City } from 'src/app/shared/models/city.model';
+import { SharedHomesService } from 'src/app/shared/services/shared-homes.service';
 
 @Component({
   selector: 'app-map-homes',
@@ -31,9 +32,10 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @Input() homes: Home[];
   @Input() city: City;
+  @Output() openHomeDetailsModal = new EventEmitter();
   public currentHome: Home;
 
-  constructor() { }
+  constructor(private sharedHomeService: SharedHomesService) { }
 
   ngOnInit() {
     this.options = {
@@ -76,6 +78,14 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
 
   closeInfoWindow(){
     this.infoWindow.close()
+  }
+
+  emitHomeDetailsModal(){
+    // Updates to shared Home Service first.
+    this.sharedHomeService.updateCurrentHome(this.currentHome)
+    this.closeInfoWindow()
+    // Emits event to open the modal
+    this.openHomeDetailsModal.emit();
   }
 
 }

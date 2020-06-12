@@ -15,11 +15,13 @@
             "homeStatus": "sale",
             "bedrooms": "4",
             "bathrooms": "3",
-            "price": "500000000",
+            "price": "400000000",
             "area": "146",
             "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptatem nam ad doloribus ullam modi? Maxime nam voluptatem harum at iste, esse cum maiores! Distinctio eligendi praesentium facere atque est!",
             "images": [
-                "https://d2gdo2i74ax4qq.cloudfront.net/inmuebles/images/1172264/venta_bogota_1_1561869795_335x530.jpg"
+                "https://d2gdo2i74ax4qq.cloudfront.net/inmuebles/images/1172264/venta_bogota_1_1561869795_335x530.jpg",
+                "https://picsum.photos/300/200",
+                "https://picsum.photos/300/200"
             ]
         },
         {

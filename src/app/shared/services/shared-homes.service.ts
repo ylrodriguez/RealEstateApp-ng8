@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { City } from '../models/city.model';
 import { CityService } from './city.service';
+import { Home } from '../models/home.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,16 @@ export class SharedHomesService {
     country: "Colombia"
   }
   private _currentCity = new BehaviorSubject<City>({});
+  private _currentHome = new BehaviorSubject<Home>({});
 
-  constructor(private cityService: CityService) {}
+  constructor(private cityService: CityService) { }
 
-  get currentCity(){
+  /** currentCity methods */
+  get currentCity() {
     return this._currentCity;
   }
 
-  updateCurrentCity(city: City){
+  updateCurrentCity(city: City) {
     this.cityService.getCityCoordinates(city).subscribe(
       (res) => {
         this._currentCity.next(res);
@@ -34,7 +37,16 @@ export class SharedHomesService {
     )
   }
 
-  loadDefaultCurrentCity(){
+  loadDefaultCurrentCity() {
     this.updateCurrentCity(this.mockCity)
+  }
+
+  /** currentHome methods */
+  get currentHome() {
+    return this._currentHome;
+  }
+
+  updateCurrentHome(home: Home) {
+    this._currentHome.next(home);
   }
 }

@@ -8,16 +8,18 @@ import { CardHomesComponent } from './card-homes/card-homes.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { DetailsHomeComponent } from './details-home/details-home.component';
+
 
 
 @NgModule({
-  declarations: [HomesComponent, MapHomesComponent, CardHomesComponent],
+  declarations: [HomesComponent, MapHomesComponent, CardHomesComponent, DetailsHomeComponent],
   imports: [
     CommonModule,
     HomesRoutingModule,
     RouterModule,
     GoogleMapsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class HomesModule { }

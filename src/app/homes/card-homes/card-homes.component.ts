@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Home } from 'src/app/shared/models/home.model';
+import { SharedHomesService } from 'src/app/shared/services/shared-homes.service';
 
 @Component({
   selector: 'app-card-homes',
@@ -9,10 +10,18 @@ import { Home } from 'src/app/shared/models/home.model';
 export class CardHomesComponent implements OnInit {
 
   @Input() home: Home;
+  @Output() openHomeDetailsModal = new EventEmitter();
   
-  constructor() { }
+  constructor(private sharedHomeService: SharedHomesService) { }
 
   ngOnInit() {
+  }
+
+  emitHomeDetailsModal(){
+    // Updates to shared Home Service first.
+    this.sharedHomeService.updateCurrentHome(this.home)
+    // Emits event to open the modal
+    this.openHomeDetailsModal.emit();
   }
 
 }

@@ -1,0 +1,64 @@
+@import "src/assets/custom-variables"
+@import "src/assets/custom-functions"
+
+.home-details-wrapper
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+
+    .home-details-header
+        display: flex
+        flex-flow: row wrap
+        width: 100%
+
+    .home-carousel-wrapper
+        width: 100%
+        position: relative
+
+        @include lg-screen
+            width: 60%
+
+        .home-img-wrapper
+            padding-bottom: 60%
+            height: 0
+            width: 100%
+            position: relative
+
+            .img-slide
+                width: 100%
+                height: 100%
+                object-fit: cover
+                position: absolute
+                top: 0
+                left: 0
+
+    .home-basic-info
+        width: 100%
+        position: relative
+        padding: 10px
+        @include lg-screen
+            width: initial
+            padding: 20px
+
+        .home-price
+            font-size: 2rem
+            font-weight: 900
+            @include lg-screen
+                font-size: 2.5rem
+
+        .label-primary
+            color: #757575
+
+        .home-address
+            font-weight: 600
+            border-top: 1px solid #bbb
+            margin-top: 18px
+            padding-top: 5px
+
+        & > span
+            display: inline-block
+            margin: 5px 8px 5px 0
+            
+        & > p
+            margin: 0
+
