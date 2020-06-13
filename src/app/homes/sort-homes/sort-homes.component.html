@@ -1,0 +1,16 @@
+<div class="sort-dropdown">
+    <button class="sort-button" (click) = "toogleOpenDropdown()">
+        {{sortSelected.desc}}&nbsp;
+        <i class="fas fa-chevron-up" [ngClass]="{'hide' : !isOpen}"></i>
+        <i class="fas fa-chevron-down" [ngClass]="{'hide' : isOpen}"></i>
+    </button>
+    <div>
+        <ul class="options-container"  [ngClass]="{'show' : isOpen, 'hide': !isOpen}">
+            <ng-container *ngFor="let option of sortingOptions">
+                <li *ngIf="option != sortSelected" (click) = "emitSortHomes(option)">
+                    {{option.desc}}
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

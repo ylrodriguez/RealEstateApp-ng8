@@ -9,11 +9,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { DetailsHomeComponent } from './details-home/details-home.component';
+import { SortHomesComponent } from './sort-homes/sort-homes.component';
 
 
 
 @NgModule({
-  declarations: [HomesComponent, MapHomesComponent, CardHomesComponent, DetailsHomeComponent],
+  declarations: [HomesComponent, MapHomesComponent, CardHomesComponent, DetailsHomeComponent, SortHomesComponent],
   imports: [
     CommonModule,
     HomesRoutingModule,

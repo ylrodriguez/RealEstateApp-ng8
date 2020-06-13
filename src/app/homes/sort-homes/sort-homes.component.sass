@@ -1,0 +1,41 @@
+.sort-dropdown
+    position: relative
+    .sort-button
+        background: 0 0
+        padding: 0 5px
+        margin-left: 3px
+        border: 1px solid #aaa
+        border-radius: 3px
+        transition: all 0.2s ease 0s
+        user-select: none
+        color: #006aff
+        font-weight: 600
+        min-width: 230px
+        &:hover
+            border-color: #006aff
+        &:focus
+            outline: none
+    
+    .options-container
+        position: absolute
+        z-index: 2
+        background-color: #fff
+        border: 1px solid #aaa
+        margin: 0
+        padding: 0
+        right: 0
+        width: 110%
+        font-weight: 300
+        border-radius: 3px
+        box-shadow: 0 0 5px rgba(0,0,0,.35)
+        transition: opacity .2s ease-out
+        opacity: 0
+
+        li
+            cursor: pointer
+            width: 100%
+            padding: 3px 0 0 10px
+            &:hover
+                background-color: #006aff
+                color: #fff
+                

@@ -9,10 +9,6 @@
         <button class="btn-mobile-control" (click)="changeMapViewStatus(false)"
             [ngClass]="{'focus' : !isMapVisible}"><i class="fas fa-list"></i>&nbsp;Lista</button>
     </div>
-    <!-- Search main controls -->
-    <section class="search-homes">
-        <button>Example</button>
-    </section>
     <!-- Map and list container -->
     <div class="homes-search-container" *ngIf="canLoadMap">
         <!-- Map container -->
@@ -26,6 +22,10 @@
                 <h1 class="search-title">Propiedades en: {{city.name}}, {{city.country}}</h1>
                 <div class="search-extra-info">
                     <span>{{homes.length}} resultados</span>
+                    <div class="search-sort-panel">
+                        <span>Ordenar por:</span>
+                        <app-sort-homes (sortHomes) = "sortHomes($event)" ></app-sort-homes>
+                    </div>
                 </div>
             </div>
             <ul class="list-homes-wrapper" *ngIf="canLoadMap">

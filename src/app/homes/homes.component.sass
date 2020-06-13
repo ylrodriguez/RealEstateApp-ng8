@@ -57,7 +57,9 @@
             .search-extra-info
                 display: flex
                 flex-flow: row wrap
-                font-size: 0.75em
+                justify-content: space-between
+                font-size: 0.9em
+                font-weight: 600
 
         .list-homes-wrapper
             padding: 0
@@ -82,11 +84,18 @@
                     margin-right: 8px
                     width: calc((100% / 2) - 8px)
 
+//panel that controls sorting            
+.search-sort-panel
+    display: flex
+    flex-flow: row wrap
+
+// Class to toogle view between map and list
 .focus
     display: none !important
     @include lg-screen
         display: initial !important
 
+//buttons for mobile view only
 .mobile-toggle-view
     display: flex
     position: absolute
