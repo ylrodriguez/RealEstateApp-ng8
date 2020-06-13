@@ -1,26 +1,28 @@
 <ng-template #modalHomeDetails let-c="close">
-    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button> -->
+
     <div class="modal-body home-details-wrapper">
+        <button type="button" class="close" aria-label="Close" (click)="modalReferenceHomeDetails.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <div class="home-details-header">
             <div class="home-carousel-wrapper">
                 <ngb-carousel *ngIf="currentHome.images">
                     <ng-template ngbSlide *ngFor="let img of currentHome.images">
-                      <div class="home-img-wrapper">
-                        <img [src]="img" class="img-slide">
-                      </div>
+                        <div class="home-img-wrapper">
+                            <img [src]="img" class="img-slide">
+                        </div>
                     </ng-template>
                 </ngb-carousel>
             </div>
             <div class="home-basic-info">
                 <p class="home-price">${{currentHome.price | number}}</p>
-                <p class="home-status label-primary">Casa en {{currentHome.homeStatus == 'sale' ? 'venta' : 'arriendo'}}</p>
-                <span> 
+                <p class="home-status label-primary">Casa en {{currentHome.homeStatus == 'sale' ? 'venta' : 'arriendo'}}
+                </p>
+                <span>
                     <strong>{{currentHome.bedrooms}}</strong><span class="label-primary"> habitaciones</span>
                 </span>
                 <span>
-                    <strong>{{currentHome.bathrooms}}</strong><span class="label-primary"> ba&ntilde;os</span> 
+                    <strong>{{currentHome.bathrooms}}</strong><span class="label-primary"> ba&ntilde;os</span>
                 </span>
                 <span>
                     <strong>{{currentHome.area}}</strong><span class="label-primary"> m2</span>

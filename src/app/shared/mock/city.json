@@ -4,7 +4,13 @@
             "id": 2001,
             "osm_id": 7426387,
             "name": "Bogotá",
-            "country": "Colombia"
+            "country": "Colombia",
+            "cityBounds": {
+                "north": 4.909847,
+                "south": 4.376707,
+                "west": -74.575839,
+                "east": -73.515189
+            }
         }
     ]
 }

@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { fakeBackendProvider } from './shared/mock/fake-backend';
 import { HomesModule } from './homes/homes.module';
 import { SharedModule } from './shared/shared.module';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 
     /** Custom modules */
     HomesModule,
+    MainModule,
     SharedModule
     
   ],

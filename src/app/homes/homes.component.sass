@@ -88,5 +88,21 @@
         display: initial !important
 
 .mobile-toggle-view
+    display: flex
+    position: absolute
+    bottom: 5%
+    z-index: 99
+    left: 50%
+    transform: translateX(-50%)
+    
+    .btn-mobile-control
+        width: 105px
+        margin: 10px
+        background-color: #e0f2ff
+        color: #0D4599
+        border-radius: 15px
+        padding: 10px 10px
+        box-shadow: 0 0 5px 0 #909090
+        border: initial
     @include lg-screen
         display: none

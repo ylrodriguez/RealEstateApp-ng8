@@ -3,5 +3,11 @@ export interface City {
     osm_id?: number,
     name?: string,
     country?: string,
-    coordinates?: any[]
+    coordinates?: any[],
+    cityBounds?:{
+        north: number,
+        south: number,
+        west: number,
+        east: number,
+    }
 }

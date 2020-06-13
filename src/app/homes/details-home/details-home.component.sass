@@ -5,6 +5,16 @@
     display: flex
     flex-flow: column nowrap
     align-items: center
+    position: relative
+
+    .close
+        position: absolute
+        top: -4px
+        right: 1px
+        &:focus
+            top: -2px
+            right: 2px  
+            outline: none
 
     .home-details-header
         display: flex

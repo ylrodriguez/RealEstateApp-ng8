@@ -20,23 +20,31 @@ export class HomesComponent implements OnInit {
   @ViewChild('modalHomeDetails', { static: false }) modalHomeDetails;
 
   constructor(
-    private homeService: HomesService, 
-    private cityService: CityService, 
+    private homeService: HomesService,
+    private cityService: CityService,
     private sharedHomesService: SharedHomesService,
     private router: Router,
     private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
+    // Gets all urlParameters
+    const urlParameters = Object.assign({}, this.route.snapshot.queryParams);
+
     // Subscribes to currentCity value stored at SharedHomesService Service
     this.sharedHomesService.currentCity.subscribe(
       newCity => {
         this.city = newCity
         if (Object.keys(this.city).length) {
+          // Gets homes in this city area
           this.homeService.getHomesInCity(this.city).subscribe(
             (res) => {
               this.homes = res;
               this.canLoadMap = true;
+              // If urlParameters has homeid (hid) shows the modal
+              if (urlParameters.hid) {
+                this.loadQueryParamsViewOptions(urlParameters.hid)
+              }
             },
             (err) => {
               console.log(err);
@@ -47,22 +55,43 @@ export class HomesComponent implements OnInit {
       }
     )
 
-    // // TO DO GET QUERY PARAMETERS AND SHOW ACCORDINGLY
-    
-    // TO DO: Get osm_id in url
-    this.cityService.getCityByOsmId(7426387).subscribe(
-      (res) => {
-        this.sharedHomesService.updateCurrentCity(res);
-      },
-      (err) => {
-        console.log("Error ngOnInit@HomeComponent: ");
-        console.log(err);
-        this.sharedHomesService.loadDefaultCurrentCity();
-      }
-    )
+    // Loads city in url query param city
+    if (urlParameters.city) {
+      this.cityService.getCityByOsmId(urlParameters.city).subscribe(
+        (res) => {
+          if (res) {
+            this.sharedHomesService.updateCurrentCity(res);
+          }
+          else {
+            this.router.navigate(['/']);
+          }
+        },
+        (err) => {
+          console.log("Error ngOnInit@HomeComponent: ");
+          console.log(err);
+          this.sharedHomesService.loadDefaultCurrentCity();
+        }
+      )
+    }
+    // Url bad formed, go back to main page
+    else {
+      this.router.navigate(['/']);
+    }
   }
 
-  changeMapViewStatus(newStatus: boolean){
+  loadQueryParamsViewOptions(homeId: number) {
+    // Allows opening modal if home id from urlparameter exists 
+    let tempHome = this.homes.find(x => x.id === homeId)
+    if (tempHome) {
+      this.sharedHomesService.currentHome.next(tempHome);
+      this.openHomeDetailsModal();
+    }
+    else {
+      this.closeHomeDetailsModal();
+    }
+  }
+
+  changeMapViewStatus(newStatus: boolean) {
     this.isMapVisible = newStatus;
   }
 
@@ -73,7 +102,7 @@ export class HomesComponent implements OnInit {
     this.modalHomeDetails.open()
   }
 
-  closeHomeDetailsModal(){
+  closeHomeDetailsModal() {
     const urlParameters = Object.assign({}, this.route.snapshot.queryParams);
     delete urlParameters.hid;
     this.router.navigate([], { relativeTo: this.route, queryParams: urlParameters });

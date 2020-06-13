@@ -2,8 +2,12 @@
 <div class="homes-main-content">
     <!-- Only mobile controls -->
     <div class="mobile-toggle-view">
-        <button (click)="changeMapViewStatus(true)">Map</button>
-        <button (click)="changeMapViewStatus(false)">List</button>
+        <button class="btn-mobile-control" (click)="changeMapViewStatus(true)"
+            [ngClass]="{'focus' : isMapVisible}"><i class="far fa-map"></i>&nbsp;Mapa</button>
+        <button class="btn-mobile-control"
+            [ngClass]="{'focus' : isMapVisible}"><i class="fas fa-sort"></i>&nbsp;Ordenar</button>
+        <button class="btn-mobile-control" (click)="changeMapViewStatus(false)"
+            [ngClass]="{'focus' : !isMapVisible}"><i class="fas fa-list"></i>&nbsp;Lista</button>
     </div>
     <!-- Search main controls -->
     <section class="search-homes">
@@ -13,7 +17,8 @@
     <div class="homes-search-container" *ngIf="canLoadMap">
         <!-- Map container -->
         <div class="search-map-container" [ngClass]="{'focus' : !isMapVisible}">
-            <app-map-homes [city]="city" [homes]="homes" (openHomeDetailsModal)="openHomeDetailsModal()"></app-map-homes>
+            <app-map-homes [city]="city" [homes]="homes" (openHomeDetailsModal)="openHomeDetailsModal()">
+            </app-map-homes>
         </div>
         <!-- List container -->
         <div class="search-list-container" [ngClass]="{'focus' : isMapVisible}">
@@ -32,4 +37,4 @@
     </div>
 </div>
 
-<app-details-home #modalHomeDetails (closeHomeDetailsModal) = "closeHomeDetailsModal()"></app-details-home>
+<app-details-home #modalHomeDetails (closeHomeDetailsModal)="closeHomeDetailsModal()"></app-details-home>

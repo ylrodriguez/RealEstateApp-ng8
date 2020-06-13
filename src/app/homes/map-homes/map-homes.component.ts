@@ -20,12 +20,6 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
 
   public polygonCity: google.maps.Polygon;
   public restriction: google.maps.MapRestriction;
-  private BOGOTA_BOUNDS = {
-    north: 4.909847,
-    south: 4.376707,
-    west: -74.575839,
-    east: -73.515189,
-  }
 
 
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
@@ -43,7 +37,7 @@ export class MapHomesComponent implements OnInit, AfterViewInit {
       fullscreenControl: false,
       clickableIcons: false,
       restriction: {
-        latLngBounds: this.BOGOTA_BOUNDS,
+        latLngBounds: this.sharedHomeService.currentCity.value.cityBounds,
         strictBounds: false,
       }
     }
