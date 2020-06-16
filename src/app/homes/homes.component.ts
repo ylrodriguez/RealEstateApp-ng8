@@ -17,6 +17,7 @@ export class HomesComponent implements OnInit {
   public homes: Home[];
   public canLoadMap = false;
   public isMapVisible = true;
+  public defaultSort;
   @ViewChild('modalHomeDetails', { static: false }) modalHomeDetails;
 
   constructor(
@@ -84,7 +85,7 @@ export class HomesComponent implements OnInit {
   loadQueryParamsViewOptions(urlParameters) {
     // **** urlParameters ==> hid ****
     // Allows opening modal if home id from urlparameter exists 
-    if(urlParameters.hid){
+    if (urlParameters.hid) {
       let tempHome = this.homes.find(x => x.id === urlParameters.hid)
       if (tempHome) {
         this.sharedHomesService.currentHome.next(tempHome);
@@ -96,21 +97,12 @@ export class HomesComponent implements OnInit {
     }
     // **** urlParameters ==> sortType ****
     // Gets urlParameters for sort Type
-    if(urlParameters.sortType){
-      let tempSortype = urlParameters.sortType
-      let st = ''
-      let property = ''; 
-
-      if(tempSortype[0] === '-'){
-        st = '-';
-        tempSortype = tempSortype.substr(1);
-      }
-      property = tempSortype;
-      this.sortHomes({'property': property,'sortType': st});
+    if (urlParameters.sortType) {
+      this.defaultSort = urlParameters.sortType
     }
     // If doesn't have sortType add default
-    else{
-      this.sortHomes({'property': 'price','sortType': ''});
+    else {
+      this.defaultSort = 'price';
     }
   }
 
@@ -145,7 +137,7 @@ export class HomesComponent implements OnInit {
    * @param newParameter 
    * @param valueParameter 
    */
-  addUrlParameter(newParameter, valueParameter){
+  addUrlParameter(newParameter, valueParameter) {
     const urlParameters = Object.assign({}, this.route.snapshot.queryParams);
     urlParameters[newParameter] = valueParameter;
     this.router.navigate([], { relativeTo: this.route, queryParams: urlParameters });
@@ -155,7 +147,7 @@ export class HomesComponent implements OnInit {
    * Removes a parameter from route
    * @param removeParameter 
    */
-  removeUrlParameter(removeParameter){
+  removeUrlParameter(removeParameter) {
     const urlParameters = Object.assign({}, this.route.snapshot.queryParams);
     delete urlParameters[removeParameter];
     this.router.navigate([], { relativeTo: this.route, queryParams: urlParameters });
@@ -165,8 +157,8 @@ export class HomesComponent implements OnInit {
    * Sort homes according to sorting option given
    * @param sortingOption includes sortType and property
    */
-  sortHomes(sortingOption: any){
-    this.homes.sort( this.dynamicSort(`${sortingOption.sortType}${sortingOption.property}`))
+  sortHomes(sortingOption: any) {
+    this.homes.sort(this.dynamicSort(`${sortingOption.sortType}${sortingOption.property}`))
     this.addUrlParameter('sortType', `${sortingOption.sortType}${sortingOption.property}`)
   }
 
@@ -184,14 +176,14 @@ export class HomesComponent implements OnInit {
       si (a, b) retorna 1 b viene primero que a. Se posiciona en un indice menor
     */
     var sortOrder = 1;
-    if(property[0] === "-") { // - descending order 
-        sortOrder = -1;
-        property = property.substr(1);
+    if (property[0] === "-") { // - descending order 
+      sortOrder = -1;
+      property = property.substr(1);
     }
     return (a, b) => {
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-        return result * sortOrder;
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
     }
-}
+  }
 
 }

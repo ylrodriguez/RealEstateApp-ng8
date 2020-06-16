@@ -44,27 +44,38 @@ export class SortHomesComponent implements OnInit {
 
   @Input() defaultSort?;
   @Output() sortHomes = new EventEmitter();
- 
+
 
   constructor() { }
 
   ngOnInit() {
-    if(this.defaultSort){
+    if (this.defaultSort) {
       // Identify proper object because input shows only
       // sortType and property
-      this.sortSelected = this.defaultSort
+      let tempSortSelected = this.sortingOptions.find(element => 
+        this.defaultSort == (element.sortType + element.property)
+      )
+      
+      if (tempSortSelected) {
+        this.changeSortSelected(tempSortSelected)
+        this.sortHomes.emit(tempSortSelected);
+      }
+      else {
+        this.changeSortSelected(this.sortingOptions[0])
+        this.sortHomes.emit(this.sortingOptions[0]);
+      }
     }
   }
 
-  toogleOpenDropdown(){
+  toogleOpenDropdown() {
     this.isOpen = !this.isOpen;
   }
 
-  changeSortSelected(sortingOption){
+  changeSortSelected(sortingOption) {
     this.sortSelected = sortingOption
   }
 
-  emitSortHomes(sortingOption){
+  emitSortHomes(sortingOption) {
     this.toogleOpenDropdown();
     this.changeSortSelected(sortingOption)
     this.sortHomes.emit(sortingOption);
