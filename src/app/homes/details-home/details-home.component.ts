@@ -11,7 +11,7 @@ import { SharedHomesService } from 'src/app/shared/services/shared-homes.service
 })
 export class DetailsHomeComponent implements OnInit {
 
-  private modalReferenceHomeDetails: any;
+  public modalReferenceHomeDetails: any;
   public currentHome: Home;
   @ViewChild('modalHomeDetails', { static: false }) modalHomeDetails: TemplateRef<any>;
   @Output() closeHomeDetailsModal = new EventEmitter();
