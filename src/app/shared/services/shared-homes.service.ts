@@ -10,7 +10,7 @@ import { Home } from '../models/home.model';
 export class SharedHomesService {
 
   private mockCity: City = {
-    id: 2001,
+    _id: '5ee960889e7c9e1d60366f4b',
     osm_id: 7426387,
     name: "Bogotá",
     country: "Colombia"

@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlatformLocation } from '@angular/common';
 import { Home } from 'src/app/shared/models/home.model';
 import { SharedHomesService } from 'src/app/shared/services/shared-homes.service';
+import { City } from 'src/app/shared/models/city.model';
 
 @Component({
   selector: 'app-details-home',
@@ -13,6 +14,7 @@ export class DetailsHomeComponent implements OnInit {
 
   public modalReferenceHomeDetails: any;
   public currentHome: Home;
+  public currentCity: City;
   @ViewChild('modalHomeDetails', { static: false }) modalHomeDetails: TemplateRef<any>;
   @Output() closeHomeDetailsModal = new EventEmitter();
 
@@ -27,6 +29,7 @@ export class DetailsHomeComponent implements OnInit {
     this.sharedHomeService.currentHome.subscribe(
       (newHome) => {
         this.currentHome = newHome
+        this.currentCity = this.sharedHomeService.currentCity.value
       }
     );
   }

@@ -1,5 +1,5 @@
 export interface Home {
-    _id?: number,
+    _id?: string,
     type?: string,
     address?: string,
     neighborhood?: string,
