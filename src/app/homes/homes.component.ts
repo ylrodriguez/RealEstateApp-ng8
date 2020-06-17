@@ -86,7 +86,7 @@ export class HomesComponent implements OnInit {
     // **** urlParameters ==> hid ****
     // Allows opening modal if home id from urlparameter exists 
     if (urlParameters.hid) {
-      let tempHome = this.homes.find(x => x.id === urlParameters.hid)
+      let tempHome = this.homes.find(x => x._id === urlParameters.hid)
       if (tempHome) {
         this.sharedHomesService.currentHome.next(tempHome);
         this.openHomeDetailsModal();
@@ -120,7 +120,7 @@ export class HomesComponent implements OnInit {
    * add hid queryparam
    */
   openHomeDetailsModal() {
-    this.addUrlParameter('hid', this.sharedHomesService.currentHome.getValue().id);
+    this.addUrlParameter('hid', this.sharedHomesService.currentHome.getValue()._id);
     this.modalHomeDetails.open()
   }
 

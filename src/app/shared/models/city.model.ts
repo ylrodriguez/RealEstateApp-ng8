@@ -1,5 +1,5 @@
 export interface City {
-    id?: number,
+    _id?: number,
     osm_id?: number,
     name?: string,
     country?: string,

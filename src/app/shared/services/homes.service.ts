@@ -11,16 +11,12 @@ import { City } from '../models/city.model';
 })
 export class HomesService {
 
-  private baseURL = environment.apiUrl + 'homes';
+  private baseURL = environment.apiUrl + 'home';
 
   constructor(private http: HttpClient) { }
 
   getHomesInCity(city: City): Observable<Home[]> {
-    return this.http.get<Home[]>(`${this.baseURL}`,{
-      params: {
-        cityId: ''+city.id
-      }
-    })
+    return this.http.get<Home[]>(`${this.baseURL}/find/${city._id}`)
       .pipe(map(data => {
         return data;
       }));

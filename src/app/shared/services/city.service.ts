@@ -19,12 +19,11 @@ export class CityService {
 
   // Get city that matches with OSM_ID
   getCityByOsmId(osm_id: number): Observable<City>{
-    return this.http.get<City>(`${this.baseURL}`, {
-      params: {
-        osm_id: ''+osm_id
-      }
-  })
-
+    return this.http.get<City>(`${this.baseURL}/find/osm/${osm_id}`)
+    .pipe(map(data => {
+      delete data.cityBounds["_id"] // Removes _id from response to avoid issues with google maps api
+      return data
+    }))
   }
 
   // Uses nominatim API to get coordinates of a city

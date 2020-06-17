@@ -1,12 +1,6 @@
 export interface Home {
-    id?: number,
+    _id?: number,
     type?: string,
-    city?: {
-        id?: number,
-        name?: string,
-        country?: string,
-        coordinates?: any[]
-    }
     address?: string,
     neighborhood?: string,
     lat?: number,
