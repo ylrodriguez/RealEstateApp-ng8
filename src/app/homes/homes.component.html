@@ -16,6 +16,7 @@
             <app-map-homes *ngIf="canLoadMap" [city]="city" [homes]="homes"
                 (openHomeDetailsModal)="openHomeDetailsModal()">
             </app-map-homes>
+            <img class="loading-icon" src="/assets/icon/loading-disk.svg" *ngIf="!canLoadMap" alt="">
         </div>
         <!-- List container -->
         <div class="search-list-container" [ngClass]="{'focus' : isMapVisible}">
@@ -32,7 +33,7 @@
                 </div>
             </div>
             <!-- Homes List -->
-            <ul class="list-homes-wrapper" >
+            <ul class="list-homes-wrapper">
                 <!-- When homes are ready -->
                 <ng-container *ngIf="canLoadMap">
                     <li class="list-home-item" *ngFor="let home of homes">
@@ -42,7 +43,8 @@
                 <!-- When is loading homes -->
                 <ng-container *ngIf="!canLoadMap">
                     <li class="list-home-item" *ngFor="let number of numbers">
-                        <app-card-homes [isEmptyHome]="true" (openHomeDetailsModal)="openHomeDetailsModal()"></app-card-homes>
+                        <app-card-homes [isEmptyHome]="true" (openHomeDetailsModal)="openHomeDetailsModal()">
+                        </app-card-homes>
                     </li>
                 </ng-container>
             </ul>
