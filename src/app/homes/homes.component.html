@@ -2,36 +2,49 @@
 <div class="homes-main-content">
     <!-- Only mobile controls -->
     <div class="mobile-toggle-view">
-        <button class="btn-mobile-control" (click)="changeMapViewStatus(true)"
-            [ngClass]="{'focus' : isMapVisible}"><i class="far fa-map"></i>&nbsp;Mapa</button>
+        <button class="btn-mobile-control" (click)="changeMapViewStatus(true)" [ngClass]="{'focus' : isMapVisible}"><i
+                class="far fa-map"></i>&nbsp;Mapa</button>
         <!-- <button class="btn-mobile-control"
             [ngClass]="{'focus' : isMapVisible}"><i class="fas fa-sort"></i>&nbsp;Ordenar</button> -->
-        <button class="btn-mobile-control" (click)="changeMapViewStatus(false)"
-            [ngClass]="{'focus' : !isMapVisible}"><i class="fas fa-list"></i>&nbsp;Lista</button>
+        <button class="btn-mobile-control" (click)="changeMapViewStatus(false)" [ngClass]="{'focus' : !isMapVisible}"><i
+                class="fas fa-list"></i>&nbsp;Lista</button>
     </div>
     <!-- Map and list container -->
-    <div class="homes-search-container" *ngIf="canLoadMap">
+    <div class="homes-search-container">
         <!-- Map container -->
         <div class="search-map-container" [ngClass]="{'focus' : !isMapVisible}">
-            <app-map-homes [city]="city" [homes]="homes" (openHomeDetailsModal)="openHomeDetailsModal()">
+            <app-map-homes *ngIf="canLoadMap" [city]="city" [homes]="homes"
+                (openHomeDetailsModal)="openHomeDetailsModal()">
             </app-map-homes>
         </div>
         <!-- List container -->
         <div class="search-list-container" [ngClass]="{'focus' : isMapVisible}">
+            <!-- Search List -->
             <div class="search-list-header">
-                <h1 class="search-title">Propiedades en: {{city.name}}, {{city.country}}</h1>
+                <h1 class="search-title">Propiedades en: <span *ngIf="canLoadMap">{{city.name}}, {{city.country}}</span>
+                </h1>
                 <div class="search-extra-info">
-                    <span>{{homes.length}} resultados</span>
-                    <div class="search-sort-panel">
+                    <span>{{ canLoadMap ? homes.length: '-'}} resultados</span>
+                    <div class="search-sort-panel" *ngIf="canLoadMap">
                         <span>Ordenar por:</span>
-                        <app-sort-homes [defaultSort] = "defaultSort" (sortHomes) = "sortHomes($event)" ></app-sort-homes>
+                        <app-sort-homes [defaultSort]="defaultSort" (sortHomes)="sortHomes($event)"></app-sort-homes>
                     </div>
                 </div>
             </div>
-            <ul class="list-homes-wrapper" *ngIf="canLoadMap">
-                <li class="list-home-item" *ngFor="let home of homes">
-                    <app-card-homes [home]="home" (openHomeDetailsModal)="openHomeDetailsModal()"></app-card-homes>
-                </li>
+            <!-- Homes List -->
+            <ul class="list-homes-wrapper" >
+                <!-- When homes are ready -->
+                <ng-container *ngIf="canLoadMap">
+                    <li class="list-home-item" *ngFor="let home of homes">
+                        <app-card-homes [home]="home" (openHomeDetailsModal)="openHomeDetailsModal()"></app-card-homes>
+                    </li>
+                </ng-container>
+                <!-- When is loading homes -->
+                <ng-container *ngIf="!canLoadMap">
+                    <li class="list-home-item" *ngFor="let number of numbers">
+                        <app-card-homes [isEmptyHome]="true" (openHomeDetailsModal)="openHomeDetailsModal()"></app-card-homes>
+                    </li>
+                </ng-container>
             </ul>
         </div>
     </div>

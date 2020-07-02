@@ -37,9 +37,11 @@ export class CityService {
     })
       .pipe(map(data => {
         var cityCoordinates = [];
+       
         for (const cityItem of data) {
           if (city.osm_id == cityItem["osm_id"]) {
-            for (const coordinateItem of cityItem["geojson"]["coordinates"][0]) {
+            let cityCoordinatesArray = cityItem["geojson"]["coordinates"][0][0]
+            for (const coordinateItem of cityCoordinatesArray) {
               cityCoordinates.push({
                 'lng': coordinateItem[0],
                 'lat': coordinateItem[1]

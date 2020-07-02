@@ -1,12 +1,12 @@
-<div class="card-home-wrapper">
+<div class="card-home-wrapper" [ngClass]="isEmptyHome ? 'show-hide' : ''">
     <div class="card-header" (click)="emitHomeDetailsModal()">
-        <img [src]="home.images[0]" alt="" class="card-home-img">
-        <div class="header-info">
+        <img *ngIf="!isEmptyHome" [src]="home.images[0]" alt="" class="card-home-img">
+        <div class="header-info" *ngIf="!isEmptyHome">
             <p class="home-status">Casa en {{home.homeStatus == 'sale' ? 'venta' : 'arriendo'}}</p>
             <p class="home-price">$ {{home.price | number}}</p>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="!isEmptyHome">
         <span (click)="emitHomeDetailsModal()">
             <strong>{{home.bedrooms}}</strong> habitaciones
         </span>
@@ -22,5 +22,11 @@
         <p class="home-neighborhood">
             <span (click)="emitHomeDetailsModal()">{{home.neighborhood}}</span>
         </p>
+    </div>
+    <!-- Body if Home is Empty -->
+    <div class="card-body" *ngIf="isEmptyHome">
+        <span>&nbsp;</span>
+        <p class="home-address">&nbsp;</p>
+        <p class="home-neighborhood">&nbsp;</p>
     </div>
 </div>

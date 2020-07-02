@@ -18,6 +18,7 @@ export class HomesComponent implements OnInit {
   public canLoadMap = false;
   public isMapVisible = true;
   public defaultSort;
+  public numbers = Array.from({length: 10}, (v, k) => k + 1);
   @ViewChild('modalHomeDetails', { static: false }) modalHomeDetails;
 
   constructor(

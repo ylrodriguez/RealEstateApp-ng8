@@ -10,6 +10,7 @@ import { SharedHomesService } from 'src/app/shared/services/shared-homes.service
 export class CardHomesComponent implements OnInit {
 
   @Input() home: Home;
+  @Input() isEmptyHome: boolean;
   @Output() openHomeDetailsModal = new EventEmitter();
   
   constructor(private sharedHomeService: SharedHomesService) { }
