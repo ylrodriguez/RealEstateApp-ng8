@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://heim-realestateapi.herokuapp.com/"
+  apiUrl: "https://heim-realestateapi.fly.dev/"
 };
 
 /*
